@@ -1,3 +1,2 @@
 # UnityStudy2212
-Unity RPG Study with Udemy RPG Video Lecture   
-Test 1
+Unity RPG Study with Udemy RPG Video Lecture
