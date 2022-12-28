@@ -35,17 +35,15 @@ namespace RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target != null)
+                if (GetComponent<Fighter>().CanAttack(target))
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
                         GetComponent<Fighter>().Attack(target);
-                        
                     }
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -63,7 +61,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hit.point);
+                    GetComponent<Mover>().StartMoveAction(hit.point);
                 }
                 return true;
             }
