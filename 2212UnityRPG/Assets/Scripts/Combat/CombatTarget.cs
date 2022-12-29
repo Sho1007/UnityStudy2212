@@ -1,4 +1,5 @@
 using UnityEngine;
+using RPG.Core;
 
 namespace RPG.Combat
 {
@@ -6,4 +7,4 @@ namespace RPG.Combat
     public class CombatTarget : MonoBehaviour
     {
     }
-}
+}   

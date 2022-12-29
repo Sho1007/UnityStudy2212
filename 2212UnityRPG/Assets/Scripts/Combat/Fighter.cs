@@ -6,6 +6,7 @@ using RPG.Core;
 
 namespace RPG.Combat
 {
+    [RequireComponent(typeof(ActionScheduler), typeof(Animator), typeof(Mover))]
     public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 5.0f;
@@ -37,13 +38,19 @@ namespace RPG.Combat
 
         private void AttackBehavior()
         {
+            transform.LookAt(target.transform);
             if (timeSinceLastAttack >= timeBetweenAttacks)
             {
                 timeSinceLastAttack = 0;
-                transform.LookAt(target.transform);
-                // This will trigger the Hit() Event.
-                GetComponent<Animator>().SetTrigger("Attack");
+                TriggerAttack();
             }
+        }
+
+        private void TriggerAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("StopAttack");
+            // This will trigger the Hit() Event.
+            GetComponent<Animator>().SetTrigger("Attack");
         }
 
         // Animation Event
@@ -58,14 +65,14 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) return false;
             Health health = combatTarget.GetComponent<Health>();
             return health != null && !health.IsDead();
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
@@ -74,8 +81,16 @@ namespace RPG.Combat
         public void Cancel()
         {
             target = null;
+            StopAttack();
+        }
+
+        private void StopAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("Attack");
             GetComponent<Animator>().SetTrigger("StopAttack");
         }
+
+        public float GetWeaponRange() {return weaponRange;}
     }
 
 }

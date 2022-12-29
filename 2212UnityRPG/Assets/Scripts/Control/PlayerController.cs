@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
+using RPG.Core;
 using System;
+
 
 namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        private Health health;
+
+
         // Start is called before the first frame update
         void Start()
         {
-            
+            health = GetComponent<Health>();
+            if (health == null) print("[PlayerController] : health is null in " + gameObject.name);
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (health.IsDead()) return;
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
             print("Nothing to do.");
@@ -34,12 +41,12 @@ namespace RPG.Control
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (GetComponent<Fighter>().CanAttack(target))
+                if (hit.transform.GetComponent<CombatTarget>() == null) continue;
+                if (GetComponent<Fighter>().CanAttack(hit.transform.gameObject))
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        GetComponent<Fighter>().Attack(target);
+                        GetComponent<Fighter>().Attack(hit.transform.gameObject);
                     }
                     return true;
                 }
