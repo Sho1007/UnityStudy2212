@@ -13,7 +13,6 @@ namespace RPG.Control
     {
         private Health health;
 
-
         // Start is called before the first frame update
         void Start()
         {
@@ -27,7 +26,6 @@ namespace RPG.Control
             if (health.IsDead()) return;
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
-            print("Nothing to do.");
         }
 
         private static Ray GetMouseRay()
@@ -44,16 +42,17 @@ namespace RPG.Control
                 if (hit.transform.GetComponent<CombatTarget>() == null) continue;
                 if (GetComponent<Fighter>().CanAttack(hit.transform.gameObject))
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    print("CanAttack");
+                    if (Input.GetMouseButton(0))
                     {
                         GetComponent<Fighter>().Attack(hit.transform.gameObject);
+                        return true;
                     }
-                    return true;
+                    
                 }
             }
             return false;
         }
-
 
         private bool InteractWithMovement()
         {
@@ -68,7 +67,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point);
+                    GetComponent<Mover>().StartMoveAction(hit.point, 1.0f);
                 }
                 return true;
             }

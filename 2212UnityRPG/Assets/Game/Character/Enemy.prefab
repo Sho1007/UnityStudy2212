@@ -68,9 +68,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1996216838, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: maxSpeed
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2146347414461947079, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
       propertyPath: m_Speed
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
       propertyPath: weaponRange
@@ -150,8 +154,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1129444418213619625
@@ -179,3 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+  suspicionTime: 5
+  waypointDwellTime: 3
+  patrolPath: {fileID: 0}
+  patrolSpeedFraction: 0.3
