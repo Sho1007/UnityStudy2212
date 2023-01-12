@@ -9,32 +9,45 @@ namespace RPG.SceneManageMent
 {
     public class Portal : MonoBehaviour
     {
+        enum DestinationIdentifier
+        {
+            A, B, C, D, E
+        }
+
+        [SerializeField] DestinationIdentifier destination;
         [SerializeField] int SceneToLoad = -1;
         [SerializeField] Transform spawnPoint;
-
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        [SerializeField] float fadeOutTime = 1.0f;
+        [SerializeField] float fadeWaitTime = 0.5f;
+        [SerializeField] float fadeInTime = 2.0f;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
             {
                 IEnumerator transition = Transition();
-                print(transition.Current);
                 StartCoroutine(transition);
-                print(transition.Current);
             }
         }
 
-        private IEnumerator Transition()
+         private IEnumerator Transition()
         {
+            if (SceneToLoad < 0)
+            {
+                Debug.LogError("Scene to Load not set.");
+                yield break;
+            }
+            
+            DontDestroyOnLoad(gameObject);
+            Fader fader = GameObject.FindObjectOfType<Fader>();
+            yield return fader.FadeOut(fadeOutTime);
             yield return SceneManager.LoadSceneAsync(SceneToLoad);
 
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
 
+            yield return new WaitForSecondsRealtime(fadeWaitTime);
+            yield return fader.FadeIn(fadeInTime);
             Destroy(gameObject);
         }
 
@@ -42,7 +55,11 @@ namespace RPG.SceneManageMent
         {
             foreach (Portal portal in GameObject.FindObjectsOfType<Portal>())
             {
-                if (portal != gameObject) return portal; 
+                if (portal == this) continue;
+                if (portal.destination == this.destination)
+                {
+                    return portal;
+                }
             }
             return null;
         }
@@ -52,7 +69,6 @@ namespace RPG.SceneManageMent
             GameObject player = GameObject.FindWithTag("Player");
             player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
             player.transform.rotation = otherPortal.transform.rotation;
-            
         }
     }
 }
