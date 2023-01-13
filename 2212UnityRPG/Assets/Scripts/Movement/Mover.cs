@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Combat;
 using RPG.Core;
+using RPG.Saving;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
 
         NavMeshAgent    navMeshAgent;
@@ -56,6 +57,17 @@ namespace RPG.Movement
         private void UpdateAnimator()
         {
             GetComponent<Animator>().SetFloat("Speed", navMeshAgent.velocity.magnitude);
+        }
+
+        public object CaptureState()
+        {
+            return new SerializableVector3(transform.position);
+        }
+        public void RestoreState(object state)
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
+            transform.position = ((SerializableVector3)state).ToVector();
+            GetComponent<NavMeshAgent>().enabled = true;
         }
     }
 }
