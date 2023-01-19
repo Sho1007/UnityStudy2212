@@ -1128,6 +1128,10 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2775404984088286213, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: uniqueIdentifier
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
       propertyPath: weaponRange
       value: 3
