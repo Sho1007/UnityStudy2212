@@ -61,6 +61,16 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 71e41e43b459a244abaf5acca76b89ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc6170fded71bf944b115160ab2cae64, type: 3}
+--- !u!4 &2318864491899616386 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4099239710332766, guid: dc6170fded71bf944b115160ab2cae64, type: 3}
+  m_PrefabInstance: {fileID: 2315081950663666652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2319144166068447712 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4384372515144252, guid: dc6170fded71bf944b115160ab2cae64, type: 3}
+  m_PrefabInstance: {fileID: 2315081950663666652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8897614164103815396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77,9 +87,29 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fdf8276aa846d1499afa63683f0898f, type: 2}
+    - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
       propertyPath: weaponRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fdf8276aa846d1499afa63683f0898f, type: 2}
+    - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: handTransfrom
+      value: 
+      objectReference: {fileID: 2319144166068447712}
+    - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 2318864491899616386}
+    - target: {fileID: 2990201520403383646, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 2319144166068447712}
     - target: {fileID: 7608116827033390355, guid: 2dc9b72230c9c394098d117a916aa6fc, type: 3}
       propertyPath: m_Name
       value: Enemy
