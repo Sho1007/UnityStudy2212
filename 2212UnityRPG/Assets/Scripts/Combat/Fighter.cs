@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using RPG.Saving;
 using System;
 
 namespace RPG.Combat
 {
+
     [RequireComponent(typeof(ActionScheduler), typeof(Animator), typeof(Mover))]
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
-        
+        [System.Serializable]
+        struct FighterSaveData
+        {
+            public string weaponName;
+        };
+
         [SerializeField] float timeBetweenAttacks = 1.0f;
         
         [SerializeField] Transform rightHandTransform = null;
@@ -22,8 +29,6 @@ namespace RPG.Combat
         private void Start()
         {
             timeSinceLastAttack = timeBetweenAttacks;
-
-
             EquipWeapon(defaultWeapon);
             
         }
@@ -126,6 +131,21 @@ namespace RPG.Combat
         {
             GetComponent<Animator>().ResetTrigger("Attack");
             GetComponent<Animator>().SetTrigger("StopAttack");
+        }
+
+        public object CaptureState()
+        {
+            FighterSaveData data;
+            data.weaponName = currentWeapon.name;
+
+            return data;
+        }
+
+        public void RestoreState(object state)
+        {
+            FighterSaveData data = (FighterSaveData)state;
+            Weapon weapon = Resources.Load<Weapon>("Weapons/" + data.weaponName);
+            EquipWeapon(weapon);
         }
     }
 

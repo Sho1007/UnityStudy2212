@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fireball Animator Override
+  m_Controller: {fileID: 9100000, guid: ce37931bfec019e43aac891028f7b9fe, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: a0d96153182d1c0489bb09bd92070e22, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: dc5e599b6b15ada4c9ce389a3f0eba5c, type: 3}
