@@ -29,8 +29,9 @@ namespace RPG.Combat
         private void Start()
         {
             timeSinceLastAttack = timeBetweenAttacks;
-            EquipWeapon(defaultWeapon);
-            
+
+            if (currentWeapon == null)
+                EquipWeapon(defaultWeapon);
         }
 
         private void Update()
