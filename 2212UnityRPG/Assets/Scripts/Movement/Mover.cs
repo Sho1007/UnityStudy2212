@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Combat;
 using RPG.Core;
+using RPG.Attributes;
 using RPG.Saving;
 
 namespace RPG.Movement
