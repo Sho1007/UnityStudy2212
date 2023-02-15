@@ -1276,3 +1276,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5713bad8c0f9db9439dd3723fc389a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &21101227111863688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872661190855040415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd05833b6faa12a46af33a3e1bbaea03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePoints: 0
