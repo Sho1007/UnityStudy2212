@@ -149,6 +149,7 @@ namespace RPG.Combat
             Weapon weapon = Resources.Load<Weapon>("Weapons/" + data.weaponName);
             EquipWeapon(weapon);
         }
-    }
 
+        public Health GetTarget() {return target;}
+    }
 }
