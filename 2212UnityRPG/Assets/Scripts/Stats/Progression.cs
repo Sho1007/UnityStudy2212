@@ -21,19 +21,29 @@ namespace RPG.Stats
         }
 
         [System.Serializable]
+        class ProgressionStat
+        {
+            public Stats stat;
+            public float[] levels;
+        }
+
+        [System.Serializable]
         class ProgressionCharacterClass
         {
             public CharacterClass GetClass() {return characterClass;}
             public float GetHealth(int level)
             {
+                float[] health = stats[(int)Stats.Health].levels;
+
                 if (level >= health.Length)
                 {
                     Debug.LogError("[Progression] : " + characterClass + " has no health data in level " + (level + 1));
                 }
+
                 return health[level];
             }
             [SerializeField] CharacterClass characterClass;
-            [SerializeField] float[] health;
+            [SerializeField] ProgressionStat[] stats;
         }
     }
 }
