@@ -14,7 +14,6 @@ namespace RPG.Attributes
         
         private void Update()
         {
-            // TODO : Update your text
             GetComponent<Text>().text = string.Format("{0:0}%", health.GetPercentage());
         }
     }
